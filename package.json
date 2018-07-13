@@ -1,0 +1,18 @@
+{
+  "name": "robottest",
+  "version": "1.0.0",
+  "description": "Testing robot servo control via PS4 controller",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dualshock-controller": "^1.1.1",
+    "html5-gamepad": "^1.1.0",
+    "node-hid": "^0.7.3",
+    "serialport": "^6.2.1",
+    "serialport-js": "^1.1.0"
+  }
+}
