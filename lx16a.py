@@ -49,7 +49,7 @@ class LX16A:
 
   # declaration of the connection object at serial port
 
-  def __init__(self, Port="COM17", Baudrate=115200, Timeout=0.001):
+  def __init__(self, Port=sys.argv[3], Baudrate=115200, Timeout=0.001):
      self.serial = Serial(Port, baudrate=Baudrate, timeout=Timeout)
      self.serial.setDTR(1)
      self.TX_DELAY_TIME = 0.00002
@@ -326,9 +326,8 @@ def pollServo(i):
         
 # Load all servos from LX16A class
 servo = LX16A()
-i = sys.argv[0]
 servoNum = int(sys.argv[1])
-servoPos = sys.argv[2]
+servoPos = int(sys.argv[2])
 pollServo(servoNum)
 
 
