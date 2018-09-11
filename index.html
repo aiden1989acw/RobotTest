@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Servo Testing</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script>
+      $(function () {
+        var socket = io();
+        socket.on('servo data update', function(servoID, servoTemp, servoPos, servoVolts){
+            $('#servoID').text(servoID);
+            $('#servoTemp').text(servoTemp);
+            $('#servoPos').text(servoPos);
+            $('#servoVolts').text(servoVolts);
+        });
+      });
+    </script>
+
+</head>
+<body>
+    Servo ID: <span id="servoID" >no data yet</span>
+    Servo Temperature: <span id="servoTemp" >no data yet</span>
+    Servo Position: <span id="servoPos" >no data yet</span>
+    Servo Voltage: <span id="servoVolts" >no data yet</span>
+</body>
+</html>

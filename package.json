@@ -2,7 +2,7 @@
   "name": "robottest",
   "version": "1.0.0",
   "description": "Testing robot servo control via PS4 controller",
-  "main": "app.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
@@ -16,6 +16,7 @@
     "ejs": "^2.6.1",
     "electron": "^2.0.8",
     "express": "^4.16.3",
+    "express.io": "^1.1.13",
     "html5-gamepad": "^1.1.0",
     "node-hid": "^0.7.3",
     "pytalk": "^1.0.5",
@@ -24,6 +25,7 @@
     "serialport": "^6.2.1",
     "serialport-js": "^1.1.0",
     "socket.io": "^2.1.1",
-    "wait": "^0.1.0"
+    "wait": "^0.1.0",
+    "websocket": "^1.0.26"
   }
 }
