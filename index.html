@@ -20,12 +20,17 @@
     <script>
         $(function () {
             var socket = io();
-            socket.on('servo data update', function (servoID, servoTemp, servoPos, servoVolts) {
-                $('#servoID').text(servoID);
-                $('#servoTemp').text(servoTemp);
-                $('#servoPos').text(servoPos);
-                $('#servoVolts').text(servoVolts);
-
+            socket.on('servo data update1', function (servoID, servoTemp, servoPos, servoVolts) {
+                $('#servoID1').text(servoID);
+                $('#servoTemp1').text(servoTemp);
+                $('#servoPos1').text(servoPos);
+                $('#servoVolts1').text(servoVolts);
+            });
+            socket.on('servo data update2', function (servoID, servoTemp, servoPos, servoVolts) {
+                $('#servoID2').text(servoID);
+                $('#servoTemp2').text(servoTemp);
+                $('#servoPos2').text(servoPos);
+                $('#servoVolts2').text(servoVolts);
             });
         });
     </script>
@@ -34,15 +39,20 @@
 <body>
     <div class="container">
         <ul class="list-unstyled">
-            <li> Servo ID: <span id="servoID">no data yet</span></li>
-            <li> Servo Temperature: <span id="servoTemp">no data yet</span></li>
-            <li> Servo Position: <span id="servoPos">no data yet</span></li>
-            <li> Servo Voltage: <span id="servoVolts">no data yet</span></li>
+            <li> Servo ID: <span id="servoID1">no data yet</span></li>
+            <li> Servo Temperature: <span id="servoTemp1">no data yet</span></li>
+            <li> Servo Position: <span id="servoPos1">no data yet</span></li>
+            <li> Servo Voltage: <span id="servoVolts1">no data yet</span></li>
         </ul>
     </div>
     <div class="container">
-        <button type="button" class="btn btn-primary">Primary</button>
-    </div>
+        <ul class="list-unstyled">
+            <li> Servo ID: <span id="servoID2">no data yet</span></li>
+            <li> Servo Temperature: <span id="servoTemp2">no data yet</span></li>
+            <li> Servo Position: <span id="servoPos2">no data yet</span></li>
+            <li> Servo Voltage: <span id="servoVolts2">no data yet</span></li>
+      </ul>
+   </div>
 </body>
 
 </html>

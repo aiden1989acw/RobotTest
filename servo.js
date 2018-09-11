@@ -22,10 +22,10 @@ function getServoData() {
 
     /* Define what to do on everytime node application receives data from py_process */
     py_process.stdout.on('data', function (data) {
-        console.log('Servo data acquired')
+        //console.log('Servo data acquired')
         var logData = JSON.parse(data)
         let showData = logData.split(" ")
-        console.log(`ID: ${showData[0]} Temp: ${showData[1]}C Pos: ${showData[2]} Voltage: ${showData[3]} v `)
+        //console.log(`ID: ${showData[0]} Temp: ${showData[1]}C Pos: ${showData[2]} Voltage: ${showData[3]} v `)
         servoID =(`${showData[0]}`)
         servoTemp =(`${showData[1]}C`)
         servoPos =(`${showData[2]}`)
@@ -42,15 +42,21 @@ io.on('connection', function(socket){
 
 //Poll through servos to acquire data//   
 setInterval(function () {
-            if (servoToRd >= servosConected) {
+            if (servoToRd >= 3) {
                 servoToRd = 1
-            }
-            console.log(`About to read ID ${servoToRd}`)
+             }
+            //console.log(`About to read ID ${servoToRd}`)
             getServoData()
-            console.log(`Read ID ${servoToRd} complete`)
-            io.emit('servo data update', servoID, servoTemp, servoPos, servoVolts)
+            //console.log(`Read ID ${servoToRd} complete`)
+            if (servoToRd && servoID ==1) {
+            io.emit('servo data update1', servoID, servoTemp, servoPos, servoVolts)
+            }
+            //console.log(`About to read ID ${servoToRd}`)
+            if (servoToRd && servoID ==2) {
+                io.emit('servo data update2', servoID, servoTemp, servoPos, servoVolts)
+            }
             servoToRd++
-     }, 1000);
+}, 500);
 
 http.listen(3000, function(){
     console.log(`Listening on ${serverPort} `);
