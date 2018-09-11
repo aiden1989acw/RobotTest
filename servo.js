@@ -22,10 +22,10 @@ function getServoData() {
 
     /* Define what to do on everytime node application receives data from py_process */
     py_process.stdout.on('data', function (data) {
-        //console.log('Servo data acquired')
+        console.log('Servo data acquired')
         var logData = JSON.parse(data)
         let showData = logData.split(" ")
-        //console.log(`ID: ${showData[0]} Temp: ${showData[1]}C Pos: ${showData[2]} Voltage: ${showData[3]} v `)
+        console.log(`ID: ${showData[0]} Temp: ${showData[1]}C Pos: ${showData[2]} Voltage: ${showData[3]} v `)
         servoID =(`${showData[0]}`)
         servoTemp =(`${showData[1]}C`)
         servoPos =(`${showData[2]}`)
