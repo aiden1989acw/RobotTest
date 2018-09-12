@@ -47,6 +47,7 @@
 <script>
     $(function () {
         var socket = io();
+        let servoPosReq = [];
         socket.on('servo data update1', function (servoID, servoTemp, servoPos, servoVolts) {
             $('#servoID1').text(servoID);
             $('#servoTemp1').text(servoTemp);
@@ -59,13 +60,12 @@
             $('#servoPos2').text(servoPos);
             $('#servoVolts2').text(servoVolts);
         });
-    });
+     });
     var slider1 = document.getElementById("pos1");
     var output1 = document.getElementById("servo1PosReq");
     output1.innerHTML = slider1.value;
     slider1.oninput = function () {
         output1.innerHTML = this.value;
-    
     }
     var slider2 = document.getElementById("pos2");
     var output2 = document.getElementById("servo2PosReq");

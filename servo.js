@@ -39,6 +39,10 @@ app.get('/', function(req, res) {
 io.on('connection', function(socket){
     console.log('New Client Connected');
 });
+io.onmessage = function (evt) {
+    var received_msg = evt.data;
+    console.log(received_msg)
+};
 
 //Poll through servos to acquire data//   
 setInterval(function () {
