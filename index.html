@@ -8,32 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Servo Testing</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
-
-    <script>
-        $(function () {
-            var socket = io();
-            socket.on('servo data update1', function (servoID, servoTemp, servoPos, servoVolts) {
-                $('#servoID1').text(servoID);
-                $('#servoTemp1').text(servoTemp);
-                $('#servoPos1').text(servoPos);
-                $('#servoVolts1').text(servoVolts);
-            });
-            socket.on('servo data update2', function (servoID, servoTemp, servoPos, servoVolts) {
-                $('#servoID2').text(servoID);
-                $('#servoTemp2').text(servoTemp);
-                $('#servoPos2').text(servoPos);
-                $('#servoVolts2').text(servoVolts);
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -43,6 +17,10 @@
             <li> Servo Temperature: <span id="servoTemp1">no data yet</span></li>
             <li> Servo Position: <span id="servoPos1">no data yet</span></li>
             <li> Servo Voltage: <span id="servoVolts1">no data yet</span></li>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="1000" value="0" class="slider" id="pos1">
+                <p> Servo Position Required Value: <span id="servo1PosReq"></span></p>
+            </div>
         </ul>
     </div>
     <div id="servo2" class="container">
@@ -51,8 +29,50 @@
             <li> Servo Temperature: <span id="servoTemp2">no data yet</span></li>
             <li> Servo Position: <span id="servoPos2">no data yet</span></li>
             <li> Servo Voltage: <span id="servoVolts2">no data yet</span></li>
-      </ul>
-   </div>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="1000" value="0" class="slider" id="pos2">
+                <p> Servo Position Required Value: <span id="servo2PosReq"></span></p>
+            </div>
+        </ul>
+    </div>
 </body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+<script>
+    $(function () {
+        var socket = io();
+        socket.on('servo data update1', function (servoID, servoTemp, servoPos, servoVolts) {
+            $('#servoID1').text(servoID);
+            $('#servoTemp1').text(servoTemp);
+            $('#servoPos1').text(servoPos);
+            $('#servoVolts1').text(servoVolts);
+        });
+        socket.on('servo data update2', function (servoID, servoTemp, servoPos, servoVolts) {
+            $('#servoID2').text(servoID);
+            $('#servoTemp2').text(servoTemp);
+            $('#servoPos2').text(servoPos);
+            $('#servoVolts2').text(servoVolts);
+        });
+    });
+    var slider1 = document.getElementById("pos1");
+    var output1 = document.getElementById("servo1PosReq");
+    output1.innerHTML = slider1.value;
+    slider1.oninput = function () {
+        output1.innerHTML = this.value;
+    
+    }
+    var slider2 = document.getElementById("pos2");
+    var output2 = document.getElementById("servo2PosReq");
+    output2.innerHTML = slider2.value;
+    slider2.oninput = function () {
+        output2.innerHTML = this.value;
+    }
+</script>
 
 </html>
