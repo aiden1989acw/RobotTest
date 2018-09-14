@@ -47,15 +47,14 @@ class LX16A:
   SERVO_LED_ERROR_WRITE = 35
   SERVO_LED_ERROR_READ = 36
 
-  # declaration of the connection object at serial port
-
+# declaration of the connection object at serial port
   def __init__(self, Port=sys.argv[3], Baudrate=115200, Timeout=0.001):
      self.serial = Serial(Port, baudrate=Baudrate, timeout=Timeout)
      self.serial.setDTR(1)
      self.TX_DELAY_TIME = 0.00002
      self.Header = struct.pack("<BB", 0x55, 0x55)
 
-  # send packet add header and checksum
+# send packet add header and checksum
   def sendPacket(self, packet):
      sum = 0
      for item in packet:
@@ -63,11 +62,10 @@ class LX16A:
      fullPacket = bytearray(self.Header + packet +
                             struct.pack("<B", (~sum) & 0xff))
      self.serial.write(fullPacket)
-
      sleep(self.TX_DELAY_TIME)
 
-  # need to add exception and retry to the case if the checksum is not good
-  # also check good ID and order in return
+# need to add exception and retry to the case if the checksum is not good
+# also check good ID and order in return
   def sendReceivePacket(self, packet, receiveSize):
      t_id = packet[0]
      t_command = packet[2]
@@ -78,17 +76,17 @@ class LX16A:
 #     print(r_packet)
      return r_packet
 
-  # Move the servo between 0 and 1000 ie 0.24 degree resolution
-  # rate is in ms from 0 (fast) to 30000 (slow)
+# Move the servo between 0 and 1000 ie 0.24 degree resolution
+# rate is in ms from 0 (fast) to 30000 (slow)
   def moveServo(self, id, position, rate):
      packet = struct.pack("<BBBHH", id, 7,
                           self.SERVO_MOVE_TIME_WRITE,
                           position, rate)
      self.sendPacket(packet)
 
-  # Read angle and rate send by moveServo
-  # angle is between 0 and 1000 siot 0.24 degree resolution
-  # rate is in ms from 0 (fast) to 30000 (slow)
+# Read angle and rate send by moveServo
+# angle is between 0 and 1000 siot 0.24 degree resolution
+# rate is in ms from 0 (fast) to 30000 (slow)
   def readServoTarget(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_MOVE_TIME_READ)
      rpacket = self.sendReceivePacket(packet, 7)
@@ -96,22 +94,18 @@ class LX16A:
      print(s)
      return s[5:7]
 
-
 # Move the servo between 0 and 1000 ie 0.24 degree resolution
   # rate is in ms from 0 (fast) to 30000 (slow)
   # **** Wait for the command SERVO_MOVE_STOP
-
   def moveServoWait(self, id, position, rate):
      packet = struct.pack("<BBBHH", id, 7,
                           self.SERVO_MOVE_TIME_WAIT_WRITE,
                           position, rate)
      self.sendPacket(packet)
 
-
 # Read angle and rate send by moveServoWait
   # angle is between 0 and 1000 siot 0.24 degree resolution
   # rate is in ms from 0 (fast) to 30000 (slow)
-
   def readServoTargetWait(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_MOVE_TIME_WAIT_READ)
      rpacket = self.sendReceivePacket(packet, 7)
@@ -119,9 +113,7 @@ class LX16A:
 #     print(s)
      return s[5:7]
 
-
 # Share an order from moveServoWait
-
   def moveServoStart(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_MOVE_START)
      rpacket = self.sendPacket(packet)
@@ -131,10 +123,7 @@ class LX16A:
      packet = struct.pack("<BBB", id, 3, self.SERVO_MOVE_STOP)
      rpacket = self.sendPacket(packet)
 
-
 # change the servo ID
-
-
   def setID(self, id, newid):
      packet = struct.pack("<BBBB", id, 4,
                           self.SERVO_ID_WRITE, newid)
@@ -149,11 +138,8 @@ class LX16A:
 #     print(s)
      return s[5]
 
-
 # Change the offset of the angle without saving it at the next power ON
   # Angle between -125 and 125
-
-
   def setAngleOffsetAdjust(self, id, angle):
      packet = struct.pack("<BBBb", id, 4,
                           self.SERVO_ANGLE_OFFSET_ADJUST, angle)
@@ -162,15 +148,13 @@ class LX16A:
 
 # Change the offset of the angle in a permanent way
   # Angle between -125 and 125
-
-
   def setAngleOffset(self, id, angle):
      packet = struct.pack("<BBBb", id, 4,
                           self.SERVO_ANGLE_OFFSET_WRITE, angle)
      self.sendPacket(packet)
 
-  # lire l'offset de l'angle
-  # angle entre -125 et 125
+# read the offset of the angle
+# angle between -125 and 125
   def readAngleOffset(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_ANGLE_OFFSET_READ)
      rpacket = self.sendReceivePacket(packet, 4)
@@ -178,14 +162,14 @@ class LX16A:
 #     print(s)
      return s[5]
 
-  # Definir l'angle minimum et maximum du servo
-  # Angle  est entre 0 et 1000 Resolution de 0.24 degree
+# Set the minimum and maximum angle of the servo
+# Angle is between 0 and 1000 Resolution of 0.24 degree
   def setAngleLimit(self, id, angleMin, angleMax):
      packet = struct.pack("<BBBHH", id, 7,
                           self.SERVO_ANGLE_LIMIT_WRITE, angleMin, angleMax)
      self.sendPacket(packet)
 
-  # Lire la limite minimum et maximum de l'angle permise
+# Read the minimum and maximum limit of the allowed angle
   def readAngleLimit(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_ANGLE_LIMIT_READ)
      rpacket = self.sendReceivePacket(packet, 7)
@@ -193,15 +177,15 @@ class LX16A:
 #     print(s)
      return s[5:7]
 
-  # definir la tension minnimum et maximum d'operation du servo
-  # les valeurs sont en mv  min=6500 max=10000
+# Define the minimum and maximum operating voltage of the servo
+# the values ​​are in mv min = 6500 max = 10000
   def setVoltageLimit(self, id, voltageMin, voltageMax):
      packet = struct.pack("<BBBHH", id, 7, self.SERVO_VIN_LIMIT_WRITE,
                           voltageMin, voltageMax)
      rpacket = self.sendPacket(packet)
 
-  # Lire la tension minnimum et maximum d'operation du servo
-  # les valeurs sont en mv  min=6500 max=10000
+# Read the minimum and maximum operating voltage of the servo
+# the values ​​are in mv min = 6500 max = 10000
   def readVoltageLimit(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_VIN_LIMIT_READ)
      rpacket = self.sendReceivePacket(packet, 7)
@@ -209,14 +193,14 @@ class LX16A:
 #     print(s)
      return s[5:7]
 
-  # definir la temperature maximale d'operation en celsius
-  # defaux est  85 celsius   entre 50 et 100 celsius
+# Set the maximum operating temperature in celsius
+# default is 85 celsius between 50 and 100 celsius
   def setTemperatureLimit(self, id, temperatureMax):
      packet = struct.pack("<BBBB", id, 4, self.SERVO_TEMP_MAX_LIMIT_WRITE,
                           temperatureMax)
      rpacket = self.sendPacket(packet)
 
-  # Lire la limite de temperature maximale en celsius
+# Read the maximum temperature limit in celsius
   def readTemperatureLimit(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_TEMP_MAX_LIMIT_READ)
      rpacket = self.sendReceivePacket(packet, 4)
@@ -226,7 +210,7 @@ class LX16A:
 #     print("temp Limit is ",s[5])
      return s[5]
 
-  # Lire la temperature en celsius
+# Read the temperature in degree C
   def readTemperature(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_TEMP_READ)
      rpacket = self.sendReceivePacket(packet, 4)
@@ -236,31 +220,31 @@ class LX16A:
 #     print("temp is ",s[5])
      return s[5]
 
-  # lire la tension d'alimentation du servo
-  # La valeur est en mv
+# Read the supply voltage of the servo
+# The value is in mv
   def readVoltage(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_VIN_READ)
      rpacket = self.sendReceivePacket(packet, 5)
      s = struct.unpack("<BBBBBHB", rpacket)
      return s[5]
 
-  # lire la position du servo
-  # la valeur peut etre negative alors c'est  signed short
+# Read the position of the servo
+# the value can be negative so it's signed short
   def readPosition(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_POS_READ)
      rpacket = self.sendReceivePacket(packet, 5)
      s = struct.unpack("<BBBBBhB", rpacket)
      return s[5]
 
-  # Bouge moteur avec vitesse   motorMode=1 MotorSpeed=rate
-  # sinon set  servo mode =>   motorMode=0
+# Motor move with speed motorMode = 1 MotorSpeed ​​= rate
+# otherwise set servo mode => motorMode = 0
   def motorOrServo(self, id, motorMode, MotorSpeed):
      packet = struct.pack("<BBBBBh", id, 7,
                           self.SERVO_OR_MOTOR_MODE_WRITE,
                           motorMode, 0, MotorSpeed)
      self.sendPacket(packet)
 
-  # lire le mode du serv0
+# Read the mode of servo
   def readMotorOrServo(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_OR_MOTOR_MODE_READ)
      rpacket = self.sendReceivePacket(packet, 7)
@@ -268,14 +252,14 @@ class LX16A:
  #    print(s)
      return [s[5], s[7]]
 
-  # Activer ou deactiver le moteur
-  # 0 = motor OFF 1 = motor actif
+# Activate or deactivate the Motor
+# 0 = motor OFF 1 = active motor
   def LoadUnload(self, id, mode):
      packet = struct.pack("<BBBB", id, 4,
                           self.SERVO_LOAD_OR_UNLOAD_WRITE, mode)
      self.sendPacket(packet)
 
-  # Lire le status de l'activation du servo
+# Read the activation status of the servo
   def readLoadUnload(self, id):
      packet = struct.pack("<BBB", id, 3,
                           self.SERVO_LOAD_OR_UNLOAD_READ)
@@ -284,17 +268,17 @@ class LX16A:
  #    print(s)
      return s[5]
 
-  # Activer ou fermer la LED
-  # 0 = on  => self.LED_ON
-  # 1 = OFF => self.LED_OFF
+# Enable or Disable the LED
+# 0 = ON  => self.LED_ON
+# 1 = OFF => self.LED_OFF
   def setLed(self, id, ledState):
      packet = struct.pack("<BBBB", id, 4,
                           self.SERVO_LED_CTRL_WRITE, ledState)
      self.sendPacket(packet)
 
-  # Lire le status de l'activation de la led
-  # 0 = LED active
-  # 1 = LED OFF
+# Read the activation status of the LED
+# 0 = LED active
+# 1 = LED OFF
   def readLed(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_LED_CTRL_READ)
      rpacket = self.sendReceivePacket(packet, 4)
@@ -302,20 +286,20 @@ class LX16A:
  #    print(s)
      return s[5]
 
-  # Activer une erreur sur la led d'alarme
+# Activate an error on the alarm LED
   def setLedError(self, id, ledError):
      packet = struct.pack("<BBBB", id, 4,
                           self.SERVO_LED_ERROR_WRITE, ledError)
      self.sendPacket(packet)
 
+# Read an Erro on the alarm LED
   def readLedError(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_LED_ERROR_READ)
      rpacket = self.sendReceivePacket(packet, 4)
      s = struct.unpack("<BBBBBBB", rpacket)
  #    print(s)
      return s[5]
-
-
+#Poll servos for ID, Temperature, Position and Voltage
 def pollServo(i):
         id = (f"{servo.readID(i)}")
         temperature = (f"{servo.readTemperature(i)}")

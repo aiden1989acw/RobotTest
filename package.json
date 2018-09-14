@@ -2,9 +2,9 @@
   "name": "robottest",
   "version": "1.0.0",
   "description": "Testing robot servo control via PS4 controller",
-  "main": "main.js",
+  "main": "servo.js",
   "scripts": {
-    "start": "electron ."
+    "start": "servo"
   },
   "author": "",
   "license": "ISC",
