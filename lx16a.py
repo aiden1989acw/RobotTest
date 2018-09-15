@@ -116,12 +116,12 @@ class LX16A:
 # Share an order from moveServoWait
   def moveServoStart(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_MOVE_START)
-     rpacket = self.sendPacket(packet)
+     self.sendPacket(packet)
 
 # Offer a command from moveServoWait
   def moveServoStop(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_MOVE_STOP)
-     rpacket = self.sendPacket(packet)
+     self.sendPacket(packet)
 
 # change the servo ID
   def setID(self, id, newid):
@@ -182,8 +182,8 @@ class LX16A:
   def setVoltageLimit(self, id, voltageMin, voltageMax):
      packet = struct.pack("<BBBHH", id, 7, self.SERVO_VIN_LIMIT_WRITE,
                           voltageMin, voltageMax)
-     rpacket = self.sendPacket(packet)
-
+     self.sendPacket(packet)
+      
 # Read the minimum and maximum operating voltage of the servo
 # the values ​​are in mv min = 6500 max = 10000
   def readVoltageLimit(self, id):
@@ -198,7 +198,7 @@ class LX16A:
   def setTemperatureLimit(self, id, temperatureMax):
      packet = struct.pack("<BBBB", id, 4, self.SERVO_TEMP_MAX_LIMIT_WRITE,
                           temperatureMax)
-     rpacket = self.sendPacket(packet)
+     self.sendPacket(packet)
 
 # Read the maximum temperature limit in celsius
   def readTemperatureLimit(self, id):
@@ -313,6 +313,7 @@ servo = LX16A()
 servoNum = int(sys.argv[1])
 servoPos = int(sys.argv[2])
 pollServo(servoNum)
+servo.moveServo(20, servoPos, 0)
 
 
 

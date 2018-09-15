@@ -16,9 +16,11 @@
     "dualshock-controller": "^1.1.1",
     "ejs": "^2.6.1",
     "electron": "^2.0.8",
+    "es6": "0.0.7",
     "express": "^4.16.3",
     "express.io": "^1.1.13",
     "html5-gamepad": "^1.1.0",
+    "jshint": "^2.9.6",
     "node-hid": "^0.7.3",
     "pytalk": "^1.0.5",
     "python-shell": "^0.5.0",
@@ -29,5 +31,16 @@
     "wait": "^0.1.0",
     "websocket": "^1.0.26",
     "xml2json": "^0.11.2"
-  }
+  },
+  "devDependencies": {
+    "ws": "3.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aiden1989acw/RobotTest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aiden1989acw/RobotTest/issues"
+  },
+  "homepage": "https://github.com/aiden1989acw/RobotTest#readme"
 }
