@@ -48,7 +48,7 @@ class LX16A:
   SERVO_LED_ERROR_READ = 36
 
 # declaration of the connection object at serial port
-  def __init__(self, Port=sys.argv[3], Baudrate=115200, Timeout=0.001):
+  def __init__(self, Port=sys.argv[1], Baudrate=115200, Timeout=0.001):
      self.serial = Serial(Port, baudrate=Baudrate, timeout=Timeout)
      self.serial.setDTR(1)
      self.TX_DELAY_TIME = 0.00002
@@ -310,10 +310,12 @@ def pollServo(i):
         
 # Load all servos from LX16A class
 servo = LX16A()
-servoNum = int(sys.argv[1])
-servoPos = int(sys.argv[2])
+servoNum = int(sys.argv[2])
+servoPos = int(sys.argv[3])
+servoPosToMove = int(sys.argv[4])
 pollServo(servoNum)
-servo.moveServo(20, servoPos, 0)
+servo.moveServo(servoPosToMove, servoPos, 0)
+
 
 
 

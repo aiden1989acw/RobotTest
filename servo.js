@@ -12,8 +12,9 @@ let servoVolts;
 
 // Setting up communications to servo control python program */
 let servoToRd = 1;
-let servoPosReq = [];
-let portNum = 11;
+let servoPosReq;
+let servoToMove;
+let portNum = 12;
 let SerialcomPort = 'COM' + portNum;
 let servosConected = 3;
 
@@ -21,7 +22,7 @@ let servosConected = 3;
 function getServoData() {
     /* Generate a python process using nodejs child_process module */
     const spawn = require('child_process').spawn;
-    const py_process = spawn('python', ["./lx16a.py", arg1 = servoToRd, arg2 = servoPosReq[20], arg3 = SerialcomPort]);
+    const py_process = spawn('python', ["./lx16a.py", arg1 = SerialcomPort, arg2 = servoToRd, arg3 = servoPosReq, arg4 = servoToMove]);
 
     /* Define what to do on everytime node application receives data from py_process */
     py_process.stdout.on('data', function (data) {
@@ -44,12 +45,12 @@ io.on('connection', function (socket) {
 });
 //Poll through servos to acquire data//   
 setInterval(function () {
-    if (servoToRd >= 21) {
+    if (servoToRd >= 4) {
         servoToRd = 1;
     }
     //console.log(`About to read ID ${servoToRd}`)
     getServoData();
-    console.log(`Read ID ${servoToRd} complete`)
+    
     if (servoToRd && servoID == 1) {
         io.emit('servo data update1', servoID, servoTemp, servoPos, servoVolts);
     }
@@ -139,102 +140,122 @@ client.sockets.on('connection', function (socket) {
     });
     socket.on('Servo1PosRequired', function (data) {
         socket.emit('packet1', data);
-        servoPosReq[1] = data;
+        servoPosReq = data;
+        servoToMove = 1;
         console.log('Servo 1 Position Required:' + ' ' + servoPosReq[1]);
     });
     socket.on('Servo2PosRequired', function (data) {
         socket.emit('packet2', data);
-        servoPosReq[2] = data;
+        servoPosReq = data;
+        servoToMove = 2;
         console.log('Servo 2 Position Required:' + ' ' + servoPosReq[2]);
     });
     socket.on('Servo3PosRequired', function (data) {
         socket.emit('packet3', data);
-        servoPosReq[3] = data;
+        servoPosReq = data;
+        servoToMove = 3;
         console.log('Servo 3 Position Required:' + ' ' + servoPosReq[3]);
     });
     socket.on('Servo4PosRequired', function (data) {
         socket.emit('packet4', data);
-        servoPosReq[4] = data;
+        servoPosReq = data;
+        servoToMove = 4;
         console.log('Servo 4 Position Required:' + ' ' + servoPosReq[4]);
     });
     socket.on('Servo5PosRequired', function (data) {
         socket.emit('packet5', data);
-        servoPosReq[5] = data;
+        servoPosReq = data;
+        servoToMove = 5;
         console.log('Servo 5 Position Required:' + ' ' + servoPosReq[5]);
     });
     socket.on('Servo6PosRequired', function (data) {
         socket.emit('packet6', data);
-        servoPosReq[6] = data;
+        servoPosReq = data;
+        servoToMove = 6;
         console.log('Servo 6 Position Required:' + ' ' + servoPosReq[6]);
     });
     socket.on('Servo7PosRequired', function (data) {
         socket.emit('packet7', data);
-        servoPosReq[7] = data;
+        servoPosReq = data;
+        servoToMove = 7;
         console.log('Servo 7 Position Required:' + ' ' + servoPosReq[7]);
     });
     socket.on('Servo8PosRequired', function (data) {
         socket.emit('packet8', data);
-        servoPosReq[8] = data;
+        servoPosReq = data;
+        servoToMove = 8;
         console.log('Servo 8 Position Required:' + ' ' + servoPosReq[8]);
     });
     socket.on('Servo9PosRequired', function (data) {
         socket.emit('packet9', data);
-        servoPosReq[9] = data;
+        servoPosReq = data;
+        servoToMove = 9;
         console.log('Servo 9 Position Required:' + ' ' + servoPosReq[9]);
     });
     socket.on('Servo10PosRequired', function (data) {
         socket.emit('packet10', data);
-        servoPosReq[10] = data;
+        servoPosReq = data;
+        servoToMove = 10;
         console.log('Servo 10 Position Required:' + ' ' + servoPosReq[10]);
     });
     socket.on('Servo11PosRequired', function (data) {
         socket.emit('packet11', data);
-        servoPosReq[11] = data;
+        servoPosReq = data;
+        servoToMove = 11;
         console.log('Servo 11 Position Required:' + ' ' + servoPosReq[11]);
     });
     socket.on('Servo12PosRequired', function (data) {
         socket.emit('packet12', data);
-        servoPosReq[12] = data;
+        servoPosReq = data;
+        servoToMove = 12;
         console.log('Servo 12 Position Required:' + ' ' + servoPosReq[12]);
     });
     socket.on('Servo13PosRequired', function (data) {
         socket.emit('packet13', data);
-        servoPosReq[13] = data;
+        servoPosReq = data;
+        servoToMove = 13;
         console.log('Servo 13 Position Required:' + ' ' + servoPosReq[13]);
     });
     socket.on('Servo14PosRequired', function (data) {
         socket.emit('packet14', data);
-        servoPosReq[14] = data;
+        servoPosReq = data;
+        servoToMove = 14;
         console.log('Servo 14 Position Required:' + ' ' + servoPosReq[14]);
     });
     socket.on('Servo15PosRequired', function (data) {
         socket.emit('packet15', data);
-        servoPosReq[15] = data;
+        servoPosReq = data;
+        servoToMove = 15;
         console.log('Servo 15 Position Required:' + ' ' + servoPosReq[15]);
     });
     socket.on('Servo16PosRequired', function (data) {
         socket.emit('packet16', data);
-        servoPosReq[16] = data;
+        servoPosReq = data;
+        servoToMove = 16;
         console.log('Servo 16 Position Required:' + ' ' + servoPosReq[16]);
     });
     socket.on('Servo17PosRequired', function (data) {
         socket.emit('packet17', data);
-        servoPosReq[17] = data;
+        servoPosReq = data;
+        servoToMove = 17;
         console.log('Servo 17 Position Required:' + ' ' + servoPosReq[17]);
     });
     socket.on('Servo18PosRequired', function (data) {
         socket.emit('packet18', data);
-        servoPosReq[18] = data;
+        servoPosReq = data;
+        servoToMove = 18;
         console.log('Servo 18 Position Required:' + ' ' + servoPosReq[18]);
     });
     socket.on('Servo19PosRequired', function (data) {
         socket.emit('packet19', data);
-        servoPosReq[19] = data;
+        servoPosReq = data;
+        servoToMove = 19;
         console.log('Servo 19 Position Required:' + ' ' + servoPosReq[19]);
     });
     socket.on('Servo20PosRequired', function (data) {
         socket.emit('packet20', data);
-        servoPosReq[20] = data;
+        servoPosReq = data;
+        servoToMove = 20;
         console.log('Servo 20 Position Required:' + ' ' + servoPosReq[20]);
     });
 });
