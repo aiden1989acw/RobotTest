@@ -1,8 +1,12 @@
 var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var client = require('socket.io').listen(3001);
 let serverPort = 3000;
+
+app.use(express.static(__dirname));
 
 // Instances of Servo Read Data */
 let servoID;
@@ -41,16 +45,19 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-    console.log('New Client Connected');
+    console.log('Client Connected');
+    socket.on('disconnect', function () {
+        console.log('Client Disconnected');
+    });
 });
 //Poll through servos to acquire data//   
 setInterval(function () {
-    if (servoToRd >= 4) {
+    if (servoToRd >= 21) {
         servoToRd = 1;
     }
     //console.log(`About to read ID ${servoToRd}`)
     getServoData();
-    
+
     if (servoToRd && servoID == 1) {
         io.emit('servo data update1', servoID, servoTemp, servoPos, servoVolts);
     }
@@ -142,121 +149,301 @@ client.sockets.on('connection', function (socket) {
         socket.emit('packet1', data);
         servoPosReq = data;
         servoToMove = 1;
-        console.log('Servo 1 Position Required:' + ' ' + servoPosReq[1]);
+        console.log('Servo 1 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo1Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 1 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 1 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo2PosRequired', function (data) {
         socket.emit('packet2', data);
         servoPosReq = data;
         servoToMove = 2;
-        console.log('Servo 2 Position Required:' + ' ' + servoPosReq[2]);
+        console.log('Servo 2 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo2Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 2 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 2 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo3PosRequired', function (data) {
         socket.emit('packet3', data);
         servoPosReq = data;
         servoToMove = 3;
-        console.log('Servo 3 Position Required:' + ' ' + servoPosReq[3]);
+        console.log('Servo 3 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo3Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 3 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 3 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo4PosRequired', function (data) {
         socket.emit('packet4', data);
         servoPosReq = data;
         servoToMove = 4;
-        console.log('Servo 4 Position Required:' + ' ' + servoPosReq[4]);
+        console.log('Servo 4 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo4Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 4 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 4 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo5PosRequired', function (data) {
         socket.emit('packet5', data);
         servoPosReq = data;
         servoToMove = 5;
-        console.log('Servo 5 Position Required:' + ' ' + servoPosReq[5]);
+        console.log('Servo 5 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo5Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 5 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 5 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo6PosRequired', function (data) {
         socket.emit('packet6', data);
         servoPosReq = data;
         servoToMove = 6;
-        console.log('Servo 6 Position Required:' + ' ' + servoPosReq[6]);
+        console.log('Servo 6 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo6Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 6 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 6 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo7PosRequired', function (data) {
         socket.emit('packet7', data);
         servoPosReq = data;
         servoToMove = 7;
-        console.log('Servo 7 Position Required:' + ' ' + servoPosReq[7]);
+        console.log('Servo 7 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo7Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 7 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 7 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo8PosRequired', function (data) {
         socket.emit('packet8', data);
         servoPosReq = data;
         servoToMove = 8;
-        console.log('Servo 8 Position Required:' + ' ' + servoPosReq[8]);
+        console.log('Servo 8 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo8Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 8 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 8 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo9PosRequired', function (data) {
         socket.emit('packet9', data);
         servoPosReq = data;
         servoToMove = 9;
-        console.log('Servo 9 Position Required:' + ' ' + servoPosReq[9]);
+        console.log('Servo 9 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo9Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 9 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 9 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo10PosRequired', function (data) {
         socket.emit('packet10', data);
         servoPosReq = data;
         servoToMove = 10;
-        console.log('Servo 10 Position Required:' + ' ' + servoPosReq[10]);
+        console.log('Servo 10 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo10Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 10 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 10 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo11PosRequired', function (data) {
         socket.emit('packet11', data);
         servoPosReq = data;
         servoToMove = 11;
-        console.log('Servo 11 Position Required:' + ' ' + servoPosReq[11]);
+        console.log('Servo 11 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo11Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 11 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 11 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo12PosRequired', function (data) {
         socket.emit('packet12', data);
         servoPosReq = data;
         servoToMove = 12;
-        console.log('Servo 12 Position Required:' + ' ' + servoPosReq[12]);
+        console.log('Servo 12 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo12Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 12 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 12 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo13PosRequired', function (data) {
         socket.emit('packet13', data);
         servoPosReq = data;
         servoToMove = 13;
-        console.log('Servo 13 Position Required:' + ' ' + servoPosReq[13]);
+        console.log('Servo 13 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo13Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 13 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 13 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo14PosRequired', function (data) {
         socket.emit('packet14', data);
         servoPosReq = data;
         servoToMove = 14;
-        console.log('Servo 14 Position Required:' + ' ' + servoPosReq[14]);
+        console.log('Servo 14 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo14Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 14 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 14 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo15PosRequired', function (data) {
         socket.emit('packet15', data);
         servoPosReq = data;
         servoToMove = 15;
-        console.log('Servo 15 Position Required:' + ' ' + servoPosReq[15]);
+        console.log('Servo 15 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo15Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 15 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 15 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo16PosRequired', function (data) {
         socket.emit('packet16', data);
         servoPosReq = data;
         servoToMove = 16;
-        console.log('Servo 16 Position Required:' + ' ' + servoPosReq[16]);
+        console.log('Servo 16 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo16Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 16 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 16 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo17PosRequired', function (data) {
         socket.emit('packet17', data);
         servoPosReq = data;
         servoToMove = 17;
-        console.log('Servo 17 Position Required:' + ' ' + servoPosReq[17]);
+        console.log('Servo 17 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo17Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 17 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 17 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo18PosRequired', function (data) {
         socket.emit('packet18', data);
         servoPosReq = data;
         servoToMove = 18;
-        console.log('Servo 18 Position Required:' + ' ' + servoPosReq[18]);
+        console.log('Servo 18 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo18Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 18 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 18 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo19PosRequired', function (data) {
         socket.emit('packet19', data);
         servoPosReq = data;
         servoToMove = 19;
-        console.log('Servo 19 Position Required:' + ' ' + servoPosReq[19]);
+        console.log('Servo 19 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo19Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 19 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 19 Motor Disabled");
+            }
+        }
     });
     socket.on('Servo20PosRequired', function (data) {
         socket.emit('packet20', data);
         servoPosReq = data;
         servoToMove = 20;
-        console.log('Servo 20 Position Required:' + ' ' + servoPosReq[20]);
+        console.log('Servo 20 Position Required:' + ' ' + servoPosReq);
+    });
+    socket.on('servo20Enable', function (data) {
+        if (data === true) {
+            console.log("Servo 20 Motor Enabled");
+        } else {
+            if (data === false) {
+            console.log("Servo 20 Motor Disabled");
+            }
+        }
     });
 });
 

@@ -3,24 +3,12 @@
 
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Servo Testing</title>
-<style>
-body {
-    background-color: grey
-}
-span {
-    color: white
-}
-li{
-    color: white
-}
-p {
-    color: white
-}
-</style>
 </head>
 
 <body>
@@ -32,6 +20,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts1">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo1PosRequired"> no data yet</span></p>
             <input class="servo1PosReq" type="range" name="slider1" id="slider-1" value="0" min="0" max="1000"/>
+            <input id="servo1Enble" type="checkbox" checked data-toggle="toggle">                        
         </ul>
     </div>
     <div id="servo2" class="container">
@@ -42,6 +31,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts2">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo2PosRequired"> no data yet</span></p>
             <input class="servo2PosReq" type="range" name="slider2" id="slider-2" value="0" min="0" max="1000"/>
+            <input id="servo2Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo3" class="container">
@@ -52,6 +42,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts3">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo3PosRequired"> no data yet</span></p>
             <input class="servo3PosReq" type="range" name="slider3" id="slider-3" value="0" min="0" max="1000"/>
+            <input id="servo3Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo4" class="container">
@@ -62,6 +53,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts4">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo4PosRequired"> no data yet</span></p>
             <input class="servo4PosReq" type="range" name="slider4" id="slider-4" value="0" min="0" max="1000"/>
+            <input id="servo4Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo5" class="container">
@@ -72,6 +64,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts5">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo5PosRequired"> no data yet</span></p>
             <input class="servo5PosReq" type="range" name="slider5" id="slider-5" value="0" min="0" max="1000"/>
+            <input id="servo5Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo6" class="container">
@@ -82,6 +75,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts6">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo6PosRequired"> no data yet</span></p>
             <input class="servo6PosReq" type="range" name="slider6" id="slider-6" value="0" min="0" max="1000"/>
+            <input id="servo6Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo7" class="container">
@@ -92,6 +86,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts7">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo7PosRequired"> no data yet</span></p>
             <input class="servo7PosReq" type="range" name="slider7" id="slider-7" value="0" min="0" max="1000"/>
+            <input id="servo7Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo8" class="container">
@@ -102,6 +97,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts8">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo8PosRequired"> no data yet</span></p>
             <input class="servo8PosReq" type="range" name="slider8" id="slider-8" value="0" min="0" max="1000"/>
+            <input id="servo8Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo9" class="container">
@@ -112,6 +108,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts9">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo9PosRequired"> no data yet</span></p>
             <input class="servo9PosReq" type="range" name="slider9" id="slider-9" value="0" min="0" max="1000"/>
+            <input id="servo9Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo10" class="container">
@@ -122,6 +119,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts10">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo10PosRequired"> no data yet</span></p>
             <input class="servo10PosReq" type="range" name="slider10" id="slider-10" value="0" min="0" max="1000"/>
+            <input id="servo10Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo11" class="container">
@@ -132,6 +130,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts11">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo11PosRequired"> no data yet</span></p>
             <input class="servo11PosReq" type="range" name="slider11" id="slider-11" value="0" min="0" max="1000"/>
+            <input id="servo11Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo12" class="container">
@@ -142,6 +141,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts12">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo12PosRequired"> no data yet</span></p>
             <input class="servo12PosReq" type="range" name="slider12" id="slider-12" value="0" min="0" max="1000"/>
+            <input id="servo12Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo13" class="container">
@@ -152,6 +152,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts13">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo13PosRequired"> no data yet</span></p>
             <input class="servo13PosReq" type="range" name="slider13" id="slider-13" value="0" min="0" max="1000"/>
+            <input id="servo13Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo14" class="container">
@@ -162,6 +163,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts14">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo14PosRequired"> no data yet</span></p>
             <input class="servo14PosReq" type="range" name="slider14" id="slider-14" value="0" min="0" max="1000"/>
+            <input id="servo14Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo15" class="container">
@@ -172,6 +174,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts15">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo15PosRequired"> no data yet</span></p>
             <input class="servo15PosReq" type="range" name="slider15" id="slider-15" value="0" min="0" max="1000"/>
+            <input id="servo15Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo16" class="container">
@@ -182,6 +185,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts16">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo16PosRequired"> no data yet</span></p>
             <input class="servo16PosReq" type="range" name="slider16" id="slider-16" value="0" min="0" max="1000"/>
+            <input id="servo16Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo17" class="container">
@@ -192,6 +196,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts17">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo17PosRequired"> no data yet</span></p>
             <input class="servo17PosReq" type="range" name="slider17" id="slider-17" value="0" min="0" max="1000"/>
+            <input id="servo17Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo18" class="container">
@@ -202,6 +207,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts18">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo18PosRequired"> no data yet</span></p>
             <input class="servo18PosReq" type="range" name="slider18" id="slider-18" value="0" min="0" max="1000"/>
+            <input id="servo18Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo19" class="container">
@@ -212,6 +218,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts19">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo19PosRequired"> no data yet</span></p>
             <input class="servo19PosReq" type="range" name="slider19" id="slider-19" value="0" min="0" max="1000"/>
+            <input id="servo19Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
     <div id="servo20" class="container">
@@ -222,6 +229,7 @@ p {
             <li> Servo Voltage: <span id="servoVolts20">no data yet</span></li>
             <p> Servo Position Required : <span id="Servo20PosRequired"> no data yet</span></p>
             <input class="servo20PosReq" type="range" name="slider20" id="slider-20" value="0" min="0" max="1000"/>
+            <input id="servo20Enble" type="checkbox" checked data-toggle="toggle"> 
         </ul>
     </div>
 </body>
@@ -233,6 +241,7 @@ p {
     crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
     <script>
 // Display data from the servos onto HMTL page //
@@ -372,19 +381,17 @@ $(".servo1PosReq").change(function() {
     console.log('Servo 1 Position Required: ' + sVal1);
 });
 // Servo 1 Position Required derived from servo no.1 slider //
-client.on('packet1', function(data){
+client.on('packet1', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo1PosRequired").innerHTML = valFromServer[0]
-}); 
-</script>
-<script>
+});
 // Servo 2 Position Required derived from servo no.2 slider //
 $(".servo2PosReq").change(function() {
     var sVal2 = $(this).val();
     client.emit('Servo2PosRequired', sVal2);
     console.log('Servo 2 Position Required: ' + sVal2);   
 });
-client.on('packet2', function(data){
+client.on('packet2', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo2PosRequired").innerHTML = valFromServer[0]
 });
@@ -396,7 +403,7 @@ $(".servo3PosReq").change(function() {
     client.emit('Servo3PosRequired', sVal3);
     console.log('Servo 3 Position Required: ' + sVal3);   
 });
-client.on('packet3', function(data){
+client.on('packet3', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo3PosRequired").innerHTML = valFromServer[0]
 });
@@ -408,7 +415,7 @@ $(".servo4PosReq").change(function() {
     client.emit('Servo4PosRequired', sVal4);
     console.log('Servo 4 Position Required: ' + sVal4);   
 });
-client.on('packet4', function(data){
+client.on('packet4', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo4PosRequired").innerHTML = valFromServer[0]
 });
@@ -432,7 +439,7 @@ $(".servo6PosReq").change(function() {
     client.emit('Servo6PosRequired', sVal6);
     console.log('Servo 6 Position Required: ' + sVal6);   
 });
-client.on('packet6', function(data){
+client.on('packet6', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo6PosRequired").innerHTML = valFromServer[0]
 });
@@ -456,7 +463,7 @@ $(".servo8PosReq").change(function() {
     client.emit('Servo8PosRequired', sVal8);
     console.log('Servo 8 Position Required: ' + sVal8);   
 });
-client.on('packet8', function(data){
+client.on('packet8', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo8PosRequired").innerHTML = valFromServer[0]
 });
@@ -492,7 +499,7 @@ $(".servo11PosReq").change(function() {
     client.emit('Servo11PosRequired', sVal11);
     console.log('Servo 11 Position Required: ' + sVal11);   
 });
-client.on('packet11', function(data){
+client.on('packet11', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo11PosRequired").innerHTML = valFromServer[0]
 });
@@ -504,7 +511,7 @@ $(".servo11PosReq").change(function() {
     client.emit('Servo12PosRequired', sVal12);
     console.log('Servo 12 Position Required: ' + sVal12);   
 });
-client.on('packet12', function(data){
+client.on('packet12', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo12PosRequired").innerHTML = valFromServer[0]
 });
@@ -516,7 +523,7 @@ $(".servo13PosReq").change(function() {
     client.emit('Servo13PosRequired', sVal13);
     console.log('Servo 13 Position Required: ' + sVal13);   
 });
-client.on('packet13', function(data){
+client.on('packet13', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo13PosRequired").innerHTML = valFromServer[0]
 });
@@ -528,7 +535,7 @@ $(".servo14PosReq").change(function() {
     client.emit('Servo14PosRequired', sVal14);
     console.log('Servo 14 Position Required: ' + sVal14);   
 });
-client.on('packet14', function(data){
+client.on('packet14', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo14PosRequired").innerHTML = valFromServer[0]
 });
@@ -552,7 +559,7 @@ $(".servo16PosReq").change(function() {
     client.emit('Servo16PosRequired', sVal16);
     console.log('Servo 16 Position Required: ' + sVal16);   
 });
-client.on('packet16', function(data){
+client.on('packet16', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo16PosRequired").innerHTML = valFromServer[0]
 });
@@ -564,7 +571,7 @@ $(".servo17PosReq").change(function() {
     client.emit('Servo17PosRequired', sVal17);
     console.log('Servo 17 Position Required: ' + sVal17);   
 });
-client.on('packet17', function(data){
+client.on('packet17', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo17PosRequired").innerHTML = valFromServer[0]
 });
@@ -588,7 +595,7 @@ $(".servo19PosReq").change(function() {
     client.emit('Servo19PosRequired', sVal19);
     console.log('Servo 19 Position Required: ' + sVal19);   
 });
-client.on('packet19', function(data){
+client.on('packet19', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo19PosRequired").innerHTML = valFromServer[0]
 });
@@ -600,9 +607,369 @@ $(".servo20PosReq").change(function() {
     client.emit('Servo20PosRequired', sVal20);
     console.log('Servo 20 Position Required: ' + sVal20);   
 });
-client.on('packet20', function(data){
+client.on('packet20', function(data) {
     var valFromServer = data.split('-');
     document.getElementById("Servo20PosRequired").innerHTML = valFromServer[0]
 });
-</script>   
+</script> 
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo1Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo1Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo1Enable', agreed)
+       console.log('Servo 1 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo1Enable', agreed)
+       console.log('Servo 1 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo2Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo2Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo2Enable', agreed)
+       console.log('Servo 2 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo2Enable', agreed)
+       console.log('Servo 2 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo3Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo3Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo3Enable', agreed)
+       console.log('Servo 3 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo3Enable', agreed)
+       console.log('Servo 3 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo4Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo4Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo4Enable', agreed)
+       console.log('Servo 4 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo4Enable', agreed)
+       console.log('Servo 4 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo5Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo5Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo5Enable', agreed)
+       console.log('Servo 5 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo5Enable', agreed)
+       console.log('Servo 5 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo6Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo6Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo6Enable', agreed)
+       console.log('Servo 6 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo6Enable', agreed)
+       console.log('Servo 6 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo7Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo7Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo7Enable', agreed)
+       console.log('Servo 7 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo7Enable', agreed)
+       console.log('Servo 7 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo8Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo8Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo8Enable', agreed)
+       console.log('Servo 8 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo8Enable', agreed)
+       console.log('Servo 8 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo9Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo9Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo9Enable', agreed)
+       console.log('Servo 9 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo9Enable', agreed)
+       console.log('Servo 9 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo10Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo10Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo10Enable', agreed)
+       console.log('Servo 10 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo10Enable', agreed)
+       console.log('Servo 10 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo11Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo11Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo11Enable', agreed)
+       console.log('Servo 11 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo11Enable', agreed)
+       console.log('Servo 11 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo12Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo12Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo12Enable', agreed)
+       console.log('Servo 12 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo12Enable', agreed)
+       console.log('Servo 12 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo13Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo13Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo13Enable', agreed)
+       console.log('Servo 13 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo13Enable', agreed)
+       console.log('Servo 13 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo14Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo14Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo14Enable', agreed)
+       console.log('Servo 14 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo14Enable', agreed)
+       console.log('Servo 14 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo15Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo15Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo15Enable', agreed)
+       console.log('Servo 15 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo15Enable', agreed)
+       console.log('Servo 15 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo16Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo16Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo16Enable', agreed)
+       console.log('Servo 16 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo16Enable', agreed)
+       console.log('Servo 16 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo17Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo17Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo17Enable', agreed)
+       console.log('Servo 17 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo17Enable', agreed)
+       console.log('Servo 17 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo18Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo18Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo18Enable', agreed)
+       console.log('Servo 18 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo18Enable', agreed)
+       console.log('Servo 18 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo19Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo19Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo19Enable', agreed)
+       console.log('Servo 19 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo19Enable', agreed)
+       console.log('Servo 19 Motor Disabled')
+    }
+})
+</script>
+<script>
+//Initialise state of Servo Enable switch//
+$('#servo20Enble').prop('checked', false).change()
+
+//Report status of Servo Enable Switch to client
+$("#servo20Enble").change(function(){
+    var agreed = $(this).is(':checked');
+    if (agreed === true) { 
+       client.emit('servo20Enable', agreed)
+       console.log('Servo 14 Motor Enabled');
+    }
+    else {
+    if (agreed === false) 
+       client.emit('servo20Enable', agreed)
+       console.log('Servo 20 Motor Disabled')
+    }
+})
+</script>
 </html>
