@@ -1,4 +1,4 @@
-var servocontroller = require('./src/dualshock4')
+var servocontroller = require('./src/dualshock4');
 
 //Declare Dualshock Analogue stick variables
 let stickLeftX;
@@ -24,12 +24,12 @@ const sendToServo = (x) => {
 servocontroller.on('left:move', data => {
   stickLeftX = data.y
   stickLeftY = data.x
-  sendToServo(scaleX(stickLeftX))
+  sendToServo(scaleX(stickLeftX));
  });
 servocontroller.on('right:move', data => {
-  stickRightX = data.x
+  stickRightX = data.x;
   //console.log('stick right X' + stickRightX),
-  stickRightY = data.y
+  stickRightY = data.y;
   //console.log('stick right Y' + stickRightY)
-})
+});
 

@@ -292,32 +292,30 @@ class LX16A:
                           self.SERVO_LED_ERROR_WRITE, ledError)
      self.sendPacket(packet)
 
-# Read an Erro on the alarm LED
+# Read an Error on the alarm LED
   def readLedError(self, id):
      packet = struct.pack("<BBB", id, 3, self.SERVO_LED_ERROR_READ)
      rpacket = self.sendReceivePacket(packet, 4)
      s = struct.unpack("<BBBBBBB", rpacket)
  #    print(s)
      return s[5]
+
 #Poll servos for ID, Temperature, Position and Voltage
 def pollServo(i):
         id = (f"{servo.readID(i)}")
         temperature = (f"{servo.readTemperature(i)}")
         position = (f"{servo.readPosition(i)}")
         voltage = (f"{servo.readVoltage(i)/1000}")
-
         sys.stdout.write(json.dumps (id + ' ' + temperature + ' ' + position + ' ' + voltage))
-        
+     
 # Load all servos from LX16A class
 servo = LX16A()
 servoNum = int(sys.argv[2])
 servoPos = int(sys.argv[3])
 servoPosToMove = int(sys.argv[4])
+
 pollServo(servoNum)
 servo.moveServo(servoPosToMove, servoPos, 0)
-
-
-
 
 
 

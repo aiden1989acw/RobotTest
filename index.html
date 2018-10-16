@@ -620,13 +620,13 @@ $('#servo1Enble').prop('checked', false).change()
 $("#servo1Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-1").disabled = false;
        client.emit('servo1Enable', agreed)
-       console.log('Servo 1 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-1").disabled = true;
        client.emit('servo1Enable', agreed)
-       console.log('Servo 1 Motor Disabled')
     }
 })
 </script>
@@ -638,13 +638,14 @@ $('#servo2Enble').prop('checked', false).change()
 $("#servo2Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-2").disabled = false;
        client.emit('servo2Enable', agreed)
-       console.log('Servo 2 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-2").disabled = true;
        client.emit('servo2Enable', agreed)
-       console.log('Servo 2 Motor Disabled')
+       
     }
 })
 </script>
@@ -656,13 +657,13 @@ $('#servo3Enble').prop('checked', false).change()
 $("#servo3Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-3").disabled = false;
        client.emit('servo3Enable', agreed)
-       console.log('Servo 3 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-3").disabled = true;
        client.emit('servo3Enable', agreed)
-       console.log('Servo 3 Motor Disabled')
     }
 })
 </script>
@@ -674,13 +675,13 @@ $('#servo4Enble').prop('checked', false).change()
 $("#servo4Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-4").disabled = false;
        client.emit('servo4Enable', agreed)
-       console.log('Servo 4 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-4").disabled = true;
        client.emit('servo4Enable', agreed)
-       console.log('Servo 4 Motor Disabled')
     }
 })
 </script>
@@ -692,13 +693,13 @@ $('#servo5Enble').prop('checked', false).change()
 $("#servo5Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+        document.getElementById("slider-5").disabled = false;
        client.emit('servo5Enable', agreed)
-       console.log('Servo 5 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-5").disabled = true;
        client.emit('servo5Enable', agreed)
-       console.log('Servo 5 Motor Disabled')
     }
 })
 </script>
@@ -710,13 +711,13 @@ $('#servo6Enble').prop('checked', false).change()
 $("#servo6Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-6").disabled = false;
        client.emit('servo6Enable', agreed)
-       console.log('Servo 6 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-6").disabled = true;
        client.emit('servo6Enable', agreed)
-       console.log('Servo 6 Motor Disabled')
     }
 })
 </script>
@@ -728,13 +729,13 @@ $('#servo7Enble').prop('checked', false).change()
 $("#servo7Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-7").disabled = false;
        client.emit('servo7Enable', agreed)
-       console.log('Servo 7 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-7").disabled = true;
        client.emit('servo7Enable', agreed)
-       console.log('Servo 7 Motor Disabled')
     }
 })
 </script>
@@ -746,13 +747,13 @@ $('#servo8Enble').prop('checked', false).change()
 $("#servo8Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-8").disabled = false;
        client.emit('servo8Enable', agreed)
-       console.log('Servo 8 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-8").disabled = true;
        client.emit('servo8Enable', agreed)
-       console.log('Servo 8 Motor Disabled')
     }
 })
 </script>
@@ -764,13 +765,13 @@ $('#servo9Enble').prop('checked', false).change()
 $("#servo9Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-9").disabled = false;
        client.emit('servo9Enable', agreed)
-       console.log('Servo 9 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-9").disabled = true;
        client.emit('servo9Enable', agreed)
-       console.log('Servo 9 Motor Disabled')
     }
 })
 </script>
@@ -782,13 +783,13 @@ $('#servo10Enble').prop('checked', false).change()
 $("#servo10Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-10").disabled = false;
        client.emit('servo10Enable', agreed)
-       console.log('Servo 10 Motor Enabled');
     }
     else {
-    if (agreed === false) 
+    if (agreed === false)
+       document.getElementById("slider-10").disabled = true; 
        client.emit('servo10Enable', agreed)
-       console.log('Servo 10 Motor Disabled')
     }
 })
 </script>
@@ -800,13 +801,13 @@ $('#servo11Enble').prop('checked', false).change()
 $("#servo11Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-11").disabled = false;
        client.emit('servo11Enable', agreed)
-       console.log('Servo 11 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-11").disabled = true;
        client.emit('servo11Enable', agreed)
-       console.log('Servo 11 Motor Disabled')
     }
 })
 </script>
@@ -818,13 +819,13 @@ $('#servo12Enble').prop('checked', false).change()
 $("#servo12Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-12").disabled = false;
        client.emit('servo12Enable', agreed)
-       console.log('Servo 12 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-12").disabled = true;
        client.emit('servo12Enable', agreed)
-       console.log('Servo 12 Motor Disabled')
     }
 })
 </script>
@@ -836,13 +837,13 @@ $('#servo13Enble').prop('checked', false).change()
 $("#servo13Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-13").disabled = false;
        client.emit('servo13Enable', agreed)
-       console.log('Servo 13 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-13").disabled = true;
        client.emit('servo13Enable', agreed)
-       console.log('Servo 13 Motor Disabled')
     }
 })
 </script>
@@ -854,13 +855,13 @@ $('#servo14Enble').prop('checked', false).change()
 $("#servo14Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-14").disabled = false;
        client.emit('servo14Enable', agreed)
-       console.log('Servo 14 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-14").disabled = true;
        client.emit('servo14Enable', agreed)
-       console.log('Servo 14 Motor Disabled')
     }
 })
 </script>
@@ -872,13 +873,13 @@ $('#servo15Enble').prop('checked', false).change()
 $("#servo15Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-15").disabled = false;
        client.emit('servo15Enable', agreed)
-       console.log('Servo 15 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-15").disabled = true;
        client.emit('servo15Enable', agreed)
-       console.log('Servo 15 Motor Disabled')
     }
 })
 </script>
@@ -890,13 +891,13 @@ $('#servo16Enble').prop('checked', false).change()
 $("#servo16Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-16").disabled = false;
        client.emit('servo16Enable', agreed)
-       console.log('Servo 16 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-16").disabled = true;
        client.emit('servo16Enable', agreed)
-       console.log('Servo 16 Motor Disabled')
     }
 })
 </script>
@@ -908,13 +909,13 @@ $('#servo17Enble').prop('checked', false).change()
 $("#servo17Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-17").disabled = false;
        client.emit('servo17Enable', agreed)
-       console.log('Servo 17 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-17").disabled = true;
        client.emit('servo17Enable', agreed)
-       console.log('Servo 17 Motor Disabled')
     }
 })
 </script>
@@ -926,13 +927,13 @@ $('#servo18Enble').prop('checked', false).change()
 $("#servo18Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-18").disabled = false;
        client.emit('servo18Enable', agreed)
-       console.log('Servo 18 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-18").disabled = true;
        client.emit('servo18Enable', agreed)
-       console.log('Servo 18 Motor Disabled')
     }
 })
 </script>
@@ -944,13 +945,13 @@ $('#servo19Enble').prop('checked', false).change()
 $("#servo19Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-19").disabled = false;
        client.emit('servo19Enable', agreed)
-       console.log('Servo 19 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-19").disabled = true;
        client.emit('servo19Enable', agreed)
-       console.log('Servo 19 Motor Disabled')
     }
 })
 </script>
@@ -962,13 +963,13 @@ $('#servo20Enble').prop('checked', false).change()
 $("#servo20Enble").change(function(){
     var agreed = $(this).is(':checked');
     if (agreed === true) { 
+       document.getElementById("slider-20").disabled = false;
        client.emit('servo20Enable', agreed)
-       console.log('Servo 14 Motor Enabled');
     }
     else {
     if (agreed === false) 
+       document.getElementById("slider-20").disabled = true;
        client.emit('servo20Enable', agreed)
-       console.log('Servo 20 Motor Disabled')
     }
 })
 </script>
