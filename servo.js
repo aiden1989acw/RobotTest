@@ -62,13 +62,14 @@ io.on('connection', function (socket) {
     });
 });
 
+// Controller commands to Servo */
 io.on('connection', function(socket){
     var proc = require('child_process').fork('./controller.js', [], { silent: true });
     proc.stdout.on('data', function (data) {
         controllerPos = parseInt(data);
         servoToMove = 1;
         servoPosReq = controllerPos;
-        
+        console.log(servoPosReq);        
     });
     
     socket.on('disconnect', function(){
@@ -166,7 +167,7 @@ setInterval(function () {
         io.emit('servo data update20', servoID, servoTemp, servoPos, servoVolts);
     }
     servoToRd++;
-}, 100);
+}, 10);
 
 // Receive Slider Data to Servos 1 to 20//
 client.sockets.on('connection', function (socket) {
