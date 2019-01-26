@@ -28,7 +28,7 @@ let SerialComPortWindows = 'COM' + WinPortNum;
 let SerialComPortLinux = 'ttyUSB' + LinPortNum;
 
 // Controller mapping into servo programme */
-let controllerPos;
+let controllerPos = 0;
 
 // Function to acquire data from servo by opening a new python process */
 function getServoData() {
@@ -62,16 +62,19 @@ io.on('connection', function (socket) {
     });
 });
 
+function getNum(str) {
+    return /[-+]?[0-9]*\.?[0-9]+/.test(str)?parseFloat(str):0;
+}
+
 // Controller commands to Servo */
 io.on('connection', function(socket){
-    var proc = require('child_process').fork('./controller.js', [], { silent: true });
-    proc.stdout.on('data', function (data) {
-        controllerPos = parseInt(data);
+    var ServoPositionRequired = require('./controller.js'); 
+setInterval(function () {
+        controllerPos = getNum(ServoPositionRequired.ServoPos);
         servoToMove = 1;
         servoPosReq = controllerPos;
-        console.log(servoPosReq);        
-    });
-    
+        console.log(servoPosReq);
+}, 5);
     socket.on('disconnect', function(){
        proc.kill('SIGINT');
         console.log("Controller disconnected by Client");
