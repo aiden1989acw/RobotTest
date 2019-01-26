@@ -6,7 +6,7 @@ let stickLeftY;
 let stickRightX;
 let stickRightY;
 let L1 = false; let L2; let L3; let R1; let R2; let R3;
-let ServoPositionReq;
+let ServoPositionReq = 0;
 
 //Maximum  and Minimum Scale values for Dualshock Analogue sticks and the servos 
 const stickMax =  255;
