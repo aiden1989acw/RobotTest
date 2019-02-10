@@ -68,12 +68,13 @@ function getNum(str) {
 
 // Controller commands to Servo */
 io.on('connection', function(socket){
-    var ServoPositionRequired = require('./controller.js'); 
+    var ServoData = require('./controller.js'); 
 setInterval(function () {
-        controllerPos = getNum(ServoPositionRequired.ServoPos);
-        servoToMove = 1;
-        servoPosReq = controllerPos;
+        controllerPos = getNum(ServoData.ServoPos);
+        servoToMove   = getNum(ServoData.ServoNum);
+        servoPosReq   = controllerPos;
         console.log(servoPosReq);
+        console.log(servoToMove);
 }, 5);
     socket.on('disconnect', function(){
        proc.kill('SIGINT');
