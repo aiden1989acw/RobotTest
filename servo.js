@@ -1,10 +1,30 @@
+//Server and Client Port Numbers */
+const serverPort   = 3000;
+const clientHTTP   = 3001;
+const clientRemote = 3002;
+
 var app = require('express')();
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var client = require('socket.io').listen(3001);
-let serverPort = 3000;
+var client = require('socket.io').listen(clientHTTP);
+var client2 = require('socket.io')(clientRemote);
+
+client2.on('connection', function (socket) {
+    console.log('Client Odroid Connected');
+    var ServoData = require('./controller.js');
+setInterval(function () {
+        controllerPos = getNum(ServoData.ServoPos);
+        servoToMove   = getNum(ServoData.ServoNum);
+        servoPosReq   = controllerPos;   
+        socket.emit("Servo-Position", servoPosReq);
+        socket.emit("Servo-To-Move", servoToMove);
+}, 50);
+    socket.on('disconnect', function () {
+        console.log('Client Odroid Disconnected');
+    });
+});
 
 app.use(express.static(__dirname));
 
@@ -35,7 +55,7 @@ function getServoData() {
     /* Generate a python process using nodejs child_process module */
     const spawn = require('child_process').spawn;
     const py_process = spawn('python', ["./lx16a.py",
-        arg1 = SerialComPortWindows,
+        arg1 = SerialComPortLinux,
         arg2 = servoToRd,
         arg3 = servoPosReq,
         arg4 = servoToMove,
@@ -68,14 +88,7 @@ function getNum(str) {
 
 // Controller commands to Servo */
 io.on('connection', function(socket){
-    var ServoData = require('./controller.js'); 
-setInterval(function () {
-        controllerPos = getNum(ServoData.ServoPos);
-        servoToMove   = getNum(ServoData.ServoNum);
-        servoPosReq   = controllerPos;
-        console.log(servoPosReq);
-        console.log(servoToMove);
-}, 5);
+
     socket.on('disconnect', function(){
        proc.kill('SIGINT');
         console.log("Controller disconnected by Client");
