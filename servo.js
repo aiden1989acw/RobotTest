@@ -3,31 +3,6 @@ const serverPort   = 3000;
 const clientHTTP   = 3001;
 const clientRemote = 3002;
 
-var app = require('express')();
-var express = require('express');
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var client = require('socket.io').listen(clientHTTP);
-var client2 = require('socket.io')(clientRemote);
-
-client2.on('connection', function (socket) {
-    console.log('Client Odroid Connected');
-    var ServoData = require('./controller.js');
-setInterval(function () {
-        controllerPos = getNum(ServoData.ServoPos);
-        servoToMove   = getNum(ServoData.ServoNum);
-        servoPosReq   = controllerPos;   
-        socket.emit("Servo-Position", servoPosReq);
-        socket.emit("Servo-To-Move", servoToMove);
-}, 50);
-    socket.on('disconnect', function () {
-        console.log('Client Odroid Disconnected');
-    });
-});
-
-app.use(express.static(__dirname));
-
 // Instances of Servo Read Data */
 let servoID;
 let servoTemp;
@@ -41,36 +16,50 @@ let servoToMove;
 let servoToEnable;
 let servosConected = 3;
 
-// Setting up Communications Port for Windows & Linux */
-let WinPortNum = 11;
-let LinPortNum = 0;
-let SerialComPortWindows = 'COM' + WinPortNum;
-let SerialComPortLinux = 'ttyUSB' + LinPortNum;
-
 // Controller mapping into servo programme */
 let controllerPos = 0;
 
-// Function to acquire data from servo by opening a new python process */
+var app = require('express')();
+var express = require('express');
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var client = require('socket.io').listen(clientHTTP);
+var client2 = require('socket.io').listen(clientRemote);
+
+// Function to Get data from servo by opening a new socket.io socket connection */
 function getServoData() {
-    /* Generate a python process using nodejs child_process module */
-    const spawn = require('child_process').spawn;
-    const py_process = spawn('python', ["./lx16a.py",
-        arg1 = SerialComPortLinux,
-        arg2 = servoToRd,
-        arg3 = servoPosReq,
-        arg4 = servoToMove,
-    ]);
-    
-    /* Define what to do on everytime node application receives data from py_process */
-    py_process.stdout.on('data', function (data) {
+client2.on('connection', function (socket) {
+    socket.on('getServoData', (data) => {
         var logData = JSON.parse(data);
         let showData = logData.split(" ");
         servoID = (`${showData[0]}`);
         servoTemp = (`${showData[1]}`);
         servoPos = (`${showData[2]}`);
-        servoVolts = (`${showData[3]} v`);
+        servoVolts = (`${showData[3]} v`); 
+     
+        });
     });
-}
+};
+
+// Function to Send from Controller to Servo by opening a new socket.io socket connection */
+function sendServoData() {
+client2.on('connection', function (socket) {
+    console.log('Client Odroid Connected');
+    var ServoData = require('./controller.js');
+        controllerPos = getNum(ServoData.ServoPos);
+        servoToMove   = getNum(ServoData.ServoNum);
+        servoPosReq   = controllerPos;   
+        socket.emit("Servo-Position", servoPosReq);
+        socket.emit("Servo-To-Move", servoToMove);
+    socket.on('disconnect', function () {
+        console.log('Client Odroid Disconnected');
+        });
+    });
+};
+
+app.use(express.static(__dirname));
+
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
